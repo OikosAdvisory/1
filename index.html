@@ -5,553 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Oikos Advisory – The Foundation of Protection</title>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet"/>
-  <style>
-    :root {
-      --gold:       #C9A84C;
-      --gold-light: #E2C97E;
-      --gold-dark:  #8B6914;
-      --stone:      #F5F0E8;
-      --parchment:  #EDE4D0;
-      --marble:     #FDFAF4;
-      --ink:        #1A1612;
-      --ink-soft:   #3D3529;
-      --shadow:     rgba(26,22,18,0.18);
-    }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--marble);
-      color: var(--ink);
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 18px;
-      line-height: 1.75;
-      overflow-x: hidden;
-    }
-
-    /* ── NAV ── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 1.2rem 4rem;
-      background: rgba(253,250,244,0.92);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(201,168,76,0.25);
-    }
-    .nav-logo {
-      font-family: 'Cinzel', serif;
-      font-size: 1.05rem;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      color: var(--ink);
-      text-decoration: none;
-    }
-    .nav-logo span { color: var(--gold); }
-    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-    .nav-links a {
-      font-family: 'Cinzel', serif;
-      font-size: 0.72rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--ink-soft);
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-    .nav-links a:hover { color: var(--gold); }
-
-    /* ── HERO ── */
-    #hero {
-      min-height: 100vh;
-      display: flex; flex-direction: column; justify-content: center;
-      position: relative;
-      overflow: hidden;
-      padding: 8rem 4rem 5rem;
-    }
-
-    /* Marble texture overlay */
-    #hero::before {
-      content: '';
-      position: absolute; inset: 0;
-      background:
-        radial-gradient(ellipse 80% 60% at 70% 40%, rgba(201,168,76,0.07) 0%, transparent 70%),
-        radial-gradient(ellipse 50% 80% at 10% 80%, rgba(201,168,76,0.05) 0%, transparent 60%);
-      pointer-events: none;
-    }
-
-    /* Decorative column lines */
-    .hero-columns {
-      position: absolute; right: 5%; top: 0; bottom: 0;
-      width: 340px;
-      display: flex; gap: 28px; align-items: stretch;
-      opacity: 0.06; pointer-events: none;
-    }
-    .col-line {
-      flex: 1;
-      background: linear-gradient(to bottom, transparent 0%, var(--gold-dark) 8%, var(--gold-dark) 92%, transparent 100%);
-      border-radius: 2px;
-    }
-
-    /* Greek key border top */
-    .greek-key-top {
-      position: absolute; top: 80px; left: 0; right: 0; height: 16px;
-      background-image: repeating-linear-gradient(
-        90deg,
-        var(--gold) 0px, var(--gold) 2px,
-        transparent 2px, transparent 8px,
-        var(--gold) 8px, var(--gold) 10px,
-        transparent 10px, transparent 18px
-      );
-      opacity: 0.18;
-    }
-
-    .hero-eyebrow {
-      font-family: 'Cinzel', serif;
-      font-size: 0.7rem;
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 1.4rem;
-      animation: fadeUp 1s ease both;
-    }
-
-    .hero-title {
-      font-family: 'Cinzel', serif;
-      font-size: clamp(3.2rem, 7vw, 6.5rem);
-      font-weight: 900;
-      line-height: 1.08;
-      letter-spacing: -0.01em;
-      color: var(--ink);
-      max-width: 700px;
-      animation: fadeUp 1s 0.15s ease both;
-    }
-    .hero-title em {
-      font-style: italic;
-      color: var(--gold);
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 300;
-      font-size: 1.05em;
-    }
-
-    .hero-divider {
-      width: 80px; height: 2px;
-      background: linear-gradient(90deg, var(--gold), transparent);
-      margin: 2rem 0;
-      animation: fadeUp 1s 0.3s ease both;
-    }
-
-    .hero-sub {
-      font-size: 1.15rem;
-      font-weight: 300;
-      color: var(--ink-soft);
-      max-width: 480px;
-      line-height: 1.9;
-      animation: fadeUp 1s 0.45s ease both;
-    }
-
-    .hero-cta {
-      margin-top: 2.8rem;
-      display: flex; gap: 1.2rem; align-items: center;
-      animation: fadeUp 1s 0.6s ease both;
-    }
-    .btn-primary {
-      font-family: 'Cinzel', serif;
-      font-size: 0.72rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      padding: 1rem 2.5rem;
-      background: var(--gold);
-      color: var(--ink);
-      border: none; cursor: pointer;
-      text-decoration: none;
-      transition: background 0.3s, transform 0.2s;
-    }
-    .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
-    .btn-ghost {
-      font-family: 'Cinzel', serif;
-      font-size: 0.72rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      padding: 1rem 2.5rem;
-      background: transparent;
-      color: var(--ink);
-      border: 1px solid rgba(201,168,76,0.5);
-      cursor: pointer;
-      text-decoration: none;
-      transition: border-color 0.3s, color 0.3s;
-    }
-    .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
-
-    .hero-badge {
-      position: absolute; bottom: 3.5rem; right: 6%;
-      display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
-      animation: fadeUp 1s 0.75s ease both;
-    }
-    .hero-badge-circle {
-      width: 110px; height: 110px;
-      border-radius: 50%;
-      border: 1px solid var(--gold);
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      gap: 2px;
-      font-family: 'Cinzel', serif;
-      text-align: center;
-      padding: 1rem;
-    }
-    .hero-badge-circle .big { font-size: 1.6rem; font-weight: 700; color: var(--gold); line-height: 1; }
-    .hero-badge-circle .sm { font-size: 0.52rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-soft); }
-
-    /* ── SECTION BASE ── */
-    section { padding: 7rem 4rem; }
-
-    .section-label {
-      font-family: 'Cinzel', serif;
-      font-size: 0.65rem;
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 1rem;
-    }
-    .section-title {
-      font-family: 'Cinzel', serif;
-      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-      font-weight: 700;
-      line-height: 1.2;
-      color: var(--ink);
-    }
-    .section-divider {
-      width: 60px; height: 1px;
-      background: var(--gold);
-      margin: 1.5rem 0 2rem;
-    }
-
-    /* ── ABOUT ── */
-    #about {
-      background: var(--parchment);
-      position: relative;
-      overflow: hidden;
-    }
-    #about::before {
-      content: 'ΟΙΚΟΣ';
-      position: absolute; right: -1rem; top: 50%;
-      transform: translateY(-50%);
-      font-family: 'Cinzel', serif;
-      font-size: 14rem;
-      font-weight: 900;
-      color: rgba(201,168,76,0.06);
-      pointer-events: none;
-      letter-spacing: -0.05em;
-      line-height: 1;
-      white-space: nowrap;
-    }
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1.3fr;
-      gap: 5rem;
-      max-width: 1100px;
-      align-items: center;
-    }
-    .about-visual {
-      position: relative;
-      height: 400px;
-    }
-    .about-frame {
-      position: absolute;
-      inset: 0;
-      border: 1px solid rgba(201,168,76,0.35);
-    }
-    .about-frame-inner {
-      position: absolute;
-      inset: 12px;
-      border: 1px solid rgba(201,168,76,0.2);
-      display: flex; align-items: center; justify-content: center;
-      flex-direction: column; gap: 1rem;
-    }
-    .oikos-glyph {
-      font-family: 'Cinzel', serif;
-      font-size: 5rem;
-      font-weight: 900;
-      color: var(--gold);
-      opacity: 0.7;
-      line-height: 1;
-    }
-    .oikos-sub-glyph {
-      font-family: 'Cinzel', serif;
-      font-size: 0.65rem;
-      letter-spacing: 0.4em;
-      text-transform: uppercase;
-      color: var(--ink-soft);
-    }
-    /* decorative corner marks */
-    .corner { position: absolute; width: 20px; height: 20px; border-color: var(--gold); border-style: solid; opacity: 0.6; }
-    .corner.tl { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
-    .corner.tr { top: -1px; right: -1px; border-width: 2px 2px 0 0; }
-    .corner.bl { bottom: -1px; left: -1px; border-width: 0 0 2px 2px; }
-    .corner.br { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
-
-    .about-text p { color: var(--ink-soft); margin-bottom: 1.2rem; font-size: 1.05rem; }
-    .about-text .quote {
-      border-left: 2px solid var(--gold);
-      padding-left: 1.5rem;
-      margin: 2rem 0;
-      font-style: italic;
-      font-size: 1.25rem;
-      color: var(--ink);
-      line-height: 1.6;
-    }
-    .about-meta {
-      display: flex; gap: 3rem; margin-top: 2.5rem;
-    }
-    .meta-item .num {
-      font-family: 'Cinzel', serif;
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--gold);
-      line-height: 1;
-    }
-    .meta-item .lbl {
-      font-size: 0.7rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--ink-soft);
-      margin-top: 0.25rem;
-    }
-
-    /* ── SERVICES ── */
-    #services { background: var(--marble); }
-    .services-header { max-width: 500px; margin-bottom: 4rem; }
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5px;
-      background: rgba(201,168,76,0.15);
-      border: 1px solid rgba(201,168,76,0.2);
-    }
-    .service-card {
-      background: var(--marble);
-      padding: 3rem 2.5rem;
-      transition: background 0.4s;
-      position: relative;
-      overflow: hidden;
-    }
-    .service-card::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0; right: 0; height: 2px;
-      background: var(--gold);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.4s ease;
-    }
-    .service-card:hover { background: var(--parchment); }
-    .service-card:hover::after { transform: scaleX(1); }
-    .service-icon {
-      font-size: 1.8rem;
-      margin-bottom: 1.5rem;
-      color: var(--gold);
-      font-family: 'Cinzel', serif;
-      font-weight: 700;
-    }
-    .service-name {
-      font-family: 'Cinzel', serif;
-      font-size: 1rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      color: var(--ink);
-      margin-bottom: 0.8rem;
-    }
-    .service-desc {
-      font-size: 0.95rem;
-      color: var(--ink-soft);
-      line-height: 1.75;
-    }
-    .service-tag {
-      display: inline-block;
-      margin-top: 1.5rem;
-      font-family: 'Cinzel', serif;
-      font-size: 0.6rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--gold);
-      border: 1px solid rgba(201,168,76,0.4);
-      padding: 0.3rem 0.8rem;
-    }
-
-    /* Greek meander accent row */
-    .meander {
-      height: 20px;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='20'%3E%3Cpath d='M0 10 h8 v-8 h16 v16 h-8 v-8 h-8 v8 h16 v-16 h8 v8' fill='none' stroke='%23C9A84C' stroke-width='1.5' opacity='0.3'/%3E%3C/svg%3E");
-      background-repeat: repeat-x;
-      background-position: center;
-      margin: 4rem 0;
-    }
-
-    /* ── PILLARS (values) ── */
-    #pillars {
-      background: var(--ink);
-      color: var(--stone);
-      position: relative;
-      overflow: hidden;
-    }
-    #pillars::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(201,168,76,0.07) 0%, transparent 70%);
-    }
-    .pillars-label { color: var(--gold-light); }
-    .pillars-title { color: var(--stone); }
-    .pillars-row {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 0;
-      margin-top: 4rem;
-      border-top: 1px solid rgba(201,168,76,0.2);
-    }
-    .pillar {
-      padding: 3rem 2rem;
-      border-right: 1px solid rgba(201,168,76,0.15);
-      transition: background 0.3s;
-    }
-    .pillar:last-child { border-right: none; }
-    .pillar:hover { background: rgba(201,168,76,0.04); }
-    .pillar-num {
-      font-family: 'Cinzel', serif;
-      font-size: 3rem;
-      font-weight: 900;
-      color: rgba(201,168,76,0.18);
-      line-height: 1;
-      margin-bottom: 1rem;
-    }
-    .pillar-name {
-      font-family: 'Cinzel', serif;
-      font-size: 0.85rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--gold-light);
-      margin-bottom: 0.75rem;
-    }
-    .pillar-desc {
-      font-size: 0.95rem;
-      color: rgba(245,240,232,0.65);
-      line-height: 1.7;
-    }
-
-    /* ── CONTACT ── */
-    #contact { background: var(--parchment); }
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5rem;
-      max-width: 1000px;
-    }
-    .contact-info p { color: var(--ink-soft); margin-bottom: 2rem; font-size: 1.05rem; }
-    .contact-detail {
-      display: flex; flex-direction: column; gap: 1.2rem;
-    }
-    .contact-item {
-      display: flex; align-items: flex-start; gap: 1rem;
-    }
-    .contact-item-icon {
-      font-family: 'Cinzel', serif;
-      font-size: 0.65rem;
-      letter-spacing: 0.2em;
-      color: var(--gold);
-      text-transform: uppercase;
-      margin-top: 0.15rem;
-      min-width: 60px;
-    }
-    .contact-item-val { color: var(--ink-soft); font-size: 1rem; }
-    .contact-form { display: flex; flex-direction: column; gap: 1rem; }
-    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
-    .form-label {
-      font-family: 'Cinzel', serif;
-      font-size: 0.6rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--ink-soft);
-    }
-    .form-input, .form-textarea {
-      background: var(--marble);
-      border: 1px solid rgba(201,168,76,0.3);
-      padding: 0.85rem 1rem;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1rem;
-      color: var(--ink);
-      outline: none;
-      transition: border-color 0.3s;
-    }
-    .form-input:focus, .form-textarea:focus { border-color: var(--gold); }
-    .form-textarea { min-height: 130px; resize: vertical; }
-
-    /* ── FOOTER ── */
-    footer {
-      background: var(--ink);
-      color: rgba(245,240,232,0.5);
-      padding: 3rem 4rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-top: 1px solid rgba(201,168,76,0.15);
-    }
-    .footer-logo {
-      font-family: 'Cinzel', serif;
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--stone);
-      letter-spacing: 0.15em;
-    }
-    .footer-logo span { color: var(--gold); }
-    .footer-tagline {
-      font-style: italic;
-      font-size: 0.85rem;
-      color: rgba(201,168,76,0.6);
-      margin-top: 0.2rem;
-    }
-    .footer-copy { font-size: 0.75rem; letter-spacing: 0.05em; text-align: right; }
-    .footer-copy a { color: var(--gold-light); text-decoration: none; }
-
-    /* ── ANIMATIONS ── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    .reveal {
-      opacity: 0; transform: translateY(30px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-    .reveal.visible {
-      opacity: 1; transform: translateY(0);
-    }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 900px) {
-      nav { padding: 1rem 1.5rem; }
-      .nav-links { display: none; }
-      section { padding: 5rem 1.5rem; }
-      #hero { padding: 7rem 1.5rem 4rem; }
-      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
-      .about-visual { height: 260px; }
-      .services-grid { grid-template-columns: 1fr; }
-      .pillars-row { grid-template-columns: 1fr 1fr; }
-      .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
-      footer { flex-direction: column; gap: 1rem; text-align: center; }
-      .footer-copy { text-align: center; }
-      .hero-badge { display: none; }
-      .about-meta { gap: 2rem; flex-wrap: wrap; }
-      #about::before { font-size: 7rem; }
-    }
-    @media (max-width: 600px) {
-      .pillars-row { grid-template-columns: 1fr; }
-      .hero-title { font-size: 2.6rem; }
-    }
-  </style>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
 
-  <!-- NAV -->
+  <!-- ── NAV ── -->
   <nav>
-    <a href="#hero" class="nav-logo">OIKOS <span>ADVISORY</span></a>
+    <a href="#hero" class="nav-logo">
+      <!-- LOGO PLACEMENT: Replace the img src with your logo file path e.g. src="logo.png" -->
+      <!-- If you have a logo image, uncomment the line below and remove the text logo below it -->
+      <!-- <img src="YOUR-LOGO-HERE.png" alt="Oikos Advisory" class="nav-logo-img" /> -->
+      OIKOS <span>ADVISORY</span>
+    </a>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#services">Services</a></li>
@@ -560,38 +25,63 @@
     </ul>
   </nav>
 
-  <!-- HERO -->
+  <!-- ── HERO ── -->
   <section id="hero">
     <div class="greek-key-top"></div>
-    <div class="hero-columns">
-      <div class="col-line"></div>
-      <div class="col-line"></div>
-      <div class="col-line"></div>
-      <div class="col-line"></div>
-    </div>
 
-    <div class="hero-eyebrow">A Branch of CASB Agency &nbsp;·&nbsp; Est. in Honour of the Ancient Household</div>
-    <h1 class="hero-title">The <em>Foundation</em><br>of All Protection</h1>
-    <div class="hero-divider"></div>
-    <p class="hero-sub">
-      Oikos — the ancient Greek word for household and home — embodies the very principle of insurance: to shelter what matters most. We carry that covenant forward in every policy we write.
-    </p>
-    <div class="hero-cta">
-      <a href="#contact" class="btn-primary">Begin Your Journey</a>
-      <a href="#services" class="btn-ghost">Our Services</a>
-    </div>
+    <div class="hero-inner">
 
-    <div class="hero-badge">
-      <div class="hero-badge-circle">
-        <div class="big">CASB</div>
-        <div class="sm">Licensed<br>Agency</div>
+      <!-- LEFT: Text content -->
+      <div class="hero-content">
+        <div class="hero-eyebrow">A Branch of CASB Agency &nbsp;·&nbsp; Est. in Honour of the Ancient Household</div>
+        <h1 class="hero-title">The <em>Foundation</em><br>of All Protection</h1>
+        <div class="hero-divider"></div>
+        <p class="hero-sub">
+          Oikos — the ancient Greek word for household and home — embodies the very principle of insurance:
+          to shelter what matters most. We carry that covenant forward in every policy we write.
+        </p>
+        <div class="hero-cta">
+          <a href="#contact" class="btn-primary">Begin Your Journey</a>
+          <a href="#services" class="btn-ghost">Our Services</a>
+        </div>
       </div>
+
+      <!-- RIGHT: Image placeholder — replace src with your actual image -->
+      <div class="hero-image-wrap">
+        <div class="hero-image-frame">
+          <span class="corner tl"></span>
+          <span class="corner tr"></span>
+          <span class="corner bl"></span>
+          <span class="corner br"></span>
+          <!-- IMAGE PLACEMENT: Replace src="YOUR-IMAGE-HERE.jpg" with your actual image path -->
+          <!-- e.g. src="hero-photo.jpg" or src="images/team.jpg" -->
+          <img
+            src="YOUR-IMAGE-HERE.jpg"
+            alt="Oikos Advisory"
+            class="hero-img"
+            onerror="this.style.display='none'; this.parentElement.classList.add('no-image');"
+          />
+          <div class="hero-img-placeholder">
+            <div class="placeholder-icon">⊕</div>
+            <div class="placeholder-label">Place your image here</div>
+            <div class="placeholder-hint">Replace src="YOUR-IMAGE-HERE.jpg"<br>in index.html</div>
+          </div>
+        </div>
+        <div class="hero-badge">
+          <div class="hero-badge-circle">
+            <div class="big">CASB</div>
+            <div class="sm">Licensed<br>Agency</div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
-  <!-- ABOUT -->
+  <!-- ── ABOUT ── -->
   <section id="about">
     <div class="about-grid">
+
       <div class="about-visual reveal">
         <div class="about-frame">
           <span class="corner tl"></span>
@@ -604,6 +94,7 @@
           </div>
         </div>
       </div>
+
       <div class="about-text reveal">
         <div class="section-label">Who We Are</div>
         <h2 class="section-title">Rooted in an Ancient Ideal</h2>
@@ -612,10 +103,13 @@
           "The oikos was not merely a house — it was a living covenant of care, continuity, and collective protection."
         </blockquote>
         <p>
-          Oikos Advisory is a dedicated insurance branch under the CASB Agency, specialising in life insurance — with general insurance on the horizon. We take our name from the ancient Greek concept of the household: the original unit of protection, provision, and legacy.
+          Oikos Advisory is a dedicated insurance branch under the CASB Agency, specialising in life insurance —
+          with general insurance on the horizon. We take our name from the ancient Greek concept of the household:
+          the original unit of protection, provision, and legacy.
         </p>
         <p>
-          We believe that insurance is not a product; it is a promise — a shield forged for the people you love and the life you have built.
+          We believe that insurance is not a product; it is a promise — a shield forged for the people you love
+          and the life you have built.
         </p>
         <div class="about-meta">
           <div class="meta-item">
@@ -632,92 +126,131 @@
           </div>
         </div>
       </div>
+
     </div>
   </section>
 
-  <!-- SERVICES -->
+  <!-- ── SERVICES ── -->
   <section id="services">
     <div class="services-header reveal">
       <div class="section-label">What We Offer</div>
       <h2 class="section-title">Services Crafted to Shield Your World</h2>
       <div class="section-divider"></div>
     </div>
+
     <div class="services-grid">
+
       <div class="service-card reveal">
         <div class="service-icon">Ι</div>
         <div class="service-name">Life Insurance Planning</div>
-        <p class="service-desc">Comprehensive life coverage tailored to your life stage, income, and family structure. Secure your household's future against the unexpected.</p>
+        <p class="service-desc">
+          Comprehensive life coverage tailored to your life stage, income, and family structure.
+          Secure your household's future against the unexpected.
+        </p>
         <span class="service-tag">Core Service</span>
       </div>
+
       <div class="service-card reveal">
         <div class="service-icon">ΙΙ</div>
-        <div class="service-name">Legacy & Wealth Protection</div>
-        <p class="service-desc">Protect the wealth you have built across generations. We help structure coverage that preserves your legacy and provides for those who come after you.</p>
+        <div class="service-name">Legacy &amp; Wealth Protection</div>
+        <p class="service-desc">
+          Protect the wealth you have built across generations. We help structure coverage that
+          preserves your legacy and provides for those who come after you.
+        </p>
         <span class="service-tag">Life Insurance</span>
       </div>
+
       <div class="service-card reveal">
         <div class="service-icon">ΙΙΙ</div>
         <div class="service-name">Personalised Advisory</div>
-        <p class="service-desc">No two households are the same. Our advisors work closely with you to understand your unique needs and design a plan that truly fits.</p>
+        <p class="service-desc">
+          No two households are the same. Our advisors work closely with you to understand your
+          unique needs and design a plan that truly fits.
+        </p>
         <span class="service-tag">Bespoke</span>
       </div>
+
       <div class="service-card reveal">
         <div class="service-icon">ΙV</div>
-        <div class="service-name">Policy Review & Optimisation</div>
-        <p class="service-desc">Already insured? We review your existing policies to identify gaps, overlaps, and opportunities to strengthen your coverage.</p>
+        <div class="service-name">Policy Review &amp; Optimisation</div>
+        <p class="service-desc">
+          Already insured? We review your existing policies to identify gaps, overlaps, and
+          opportunities to strengthen your coverage.
+        </p>
         <span class="service-tag">Advisory</span>
       </div>
+
       <div class="service-card reveal">
         <div class="service-icon">V</div>
         <div class="service-name">Business Continuity Cover</div>
-        <p class="service-desc">Protect your enterprise and the livelihoods it sustains. From key-person insurance to group benefits, your business oikos is in safe hands.</p>
+        <p class="service-desc">
+          Protect your enterprise and the livelihoods it sustains. From key-person insurance to
+          group benefits, your business oikos is in safe hands.
+        </p>
         <span class="service-tag">Business</span>
       </div>
+
       <div class="service-card reveal">
         <div class="service-icon">VI</div>
-        <div class="service-name">General Insurance <span style="font-size:0.7em;opacity:0.6">(Coming Soon)</span></div>
-        <p class="service-desc">We are expanding our oikos. General insurance solutions will soon join our suite — covering property, assets, and beyond.</p>
+        <div class="service-name">
+          General Insurance <span style="font-size:0.7em;opacity:0.6">(Coming Soon)</span>
+        </div>
+        <p class="service-desc">
+          We are expanding our oikos. General insurance solutions will soon join our suite —
+          covering property, assets, and beyond.
+        </p>
         <span class="service-tag">Upcoming</span>
       </div>
+
     </div>
   </section>
 
-  <!-- PILLARS -->
+  <!-- ── PILLARS ── -->
   <section id="pillars">
     <div class="section-label pillars-label reveal">Our Philosophy</div>
     <h2 class="section-title pillars-title reveal">The Four Pillars of Oikos</h2>
+
     <div class="pillars-row">
+
       <div class="pillar reveal">
         <div class="pillar-num">I</div>
         <div class="pillar-name">Protection</div>
         <p class="pillar-desc">Every household deserves a shield. We engineer coverage that stands firm when life's storms arrive.</p>
       </div>
+
       <div class="pillar reveal">
         <div class="pillar-num">II</div>
         <div class="pillar-name">Continuity</div>
         <p class="pillar-desc">What you build should endure. We ensure that your legacy outlasts circumstance and secures the next generation.</p>
       </div>
+
       <div class="pillar reveal">
         <div class="pillar-num">III</div>
         <div class="pillar-name">Trust</div>
         <p class="pillar-desc">The oikos was built on covenant. Our client relationships are founded on complete transparency and long-term commitment.</p>
       </div>
+
       <div class="pillar reveal">
         <div class="pillar-num">IV</div>
         <div class="pillar-name">Wisdom</div>
         <p class="pillar-desc">Sound advice, rooted in knowledge. We guide you with clarity so every decision you make is an informed one.</p>
       </div>
+
     </div>
   </section>
 
-  <!-- CONTACT -->
+  <!-- ── CONTACT ── -->
   <section id="contact">
     <div class="contact-grid">
+
       <div class="contact-info reveal">
         <div class="section-label">Get in Touch</div>
         <h2 class="section-title">Begin Your Protection Journey</h2>
         <div class="section-divider"></div>
-        <p>Whether you are looking to protect your family, your business, or your legacy — we are here to listen, advise, and act. Reach out and let us build your oikos together.</p>
+        <p>
+          Whether you are looking to protect your family, your business, or your legacy — we are here
+          to listen, advise, and act. Reach out and let us build your oikos together.
+        </p>
         <div class="contact-detail">
           <div class="contact-item">
             <span class="contact-item-icon">Agency</span>
@@ -737,6 +270,7 @@
           </div>
         </div>
       </div>
+
       <div class="contact-form reveal">
         <div class="form-group">
           <label class="form-label">Full Name</label>
@@ -754,12 +288,13 @@
           <label class="form-label">Message</label>
           <textarea class="form-textarea" placeholder="Tell us about your insurance needs…"></textarea>
         </div>
-        <button class="btn-primary" style="margin-top:0.5rem;width:100%;font-size:0.75rem;" onclick="alert('Thank you! We will be in touch shortly.')">Send Message</button>
+        <button class="btn-primary form-submit">Send Message</button>
       </div>
+
     </div>
   </section>
 
-  <!-- FOOTER -->
+  <!-- ── FOOTER ── -->
   <footer>
     <div>
       <div class="footer-logo">OIKOS <span>ADVISORY</span></div>
@@ -771,30 +306,6 @@
     </div>
   </footer>
 
-  <script>
-    // Scroll reveal
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-          observer.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.12 });
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-    // Smooth nav highlight
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-links a');
-    window.addEventListener('scroll', () => {
-      let current = '';
-      sections.forEach(s => {
-        if (window.scrollY >= s.offsetTop - 120) current = s.id;
-      });
-      navLinks.forEach(a => {
-        a.style.color = a.getAttribute('href') === '#' + current ? 'var(--gold)' : '';
-      });
-    });
-  </script>
+  <script src="main.js"></script>
 </body>
 </html>
