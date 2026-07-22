@@ -1,12 +1,16 @@
 :root {
   --oikos-gold: #c9a84c;
   --oikos-gold-dark: #8b6914;
+  --oikos-green: #17382c;
+  --oikos-green-soft: #274d3f;
   --oikos-ink: #1a1612;
   --oikos-parchment: #f7f1e6;
+  --oikos-paper: #fffaf1;
 }
 
 body {
   color: var(--oikos-ink);
+  background: #fbf7ef;
 }
 
 a {
@@ -38,14 +42,32 @@ header.major > :last-child {
   text-transform: uppercase;
 }
 
+.support-line {
+  color: rgba(26, 22, 18, 0.68);
+  font-weight: 600;
+}
+
 .brand-banner h1 {
-  max-width: 10em;
+  color: var(--oikos-green);
+  letter-spacing: 0;
+  max-width: 11em;
 }
 
 .brand-banner header p:last-child {
   max-width: 38em;
 }
 
+.brand-banner {
+  background:
+    linear-gradient(135deg, rgba(247, 241, 230, 0.9), rgba(255, 250, 241, 0.55)),
+    radial-gradient(circle at 8% 10%, rgba(201, 168, 76, 0.16), transparent 24%);
+  border-bottom: 1px solid rgba(201, 168, 76, 0.28);
+  border-radius: 8px;
+  margin: 2rem 0 0;
+  padding: 4rem;
+}
+
+.hero-visual,
 .brand-mark {
   align-items: center;
   background: linear-gradient(135deg, #fffaf1 0%, #efe2c8 100%);
@@ -53,6 +75,18 @@ header.major > :last-child {
   display: flex !important;
   justify-content: center;
   min-height: 22rem;
+}
+
+.hero-visual {
+  border-radius: 8px;
+  box-shadow: 0 1.35rem 3rem rgba(26, 22, 18, 0.14);
+  overflow: hidden;
+}
+
+.hero-visual img {
+  height: 100% !important;
+  object-fit: cover !important;
+  width: 100% !important;
 }
 
 .brand-mark img {
@@ -94,14 +128,61 @@ button.primary,
 
 .spotlight-grid {
   display: grid;
-  gap: 2rem;
+  gap: 1.25rem;
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .spotlight-grid article {
   background: var(--oikos-parchment);
   border-left: 3px solid var(--oikos-gold);
-  padding: 1.75rem;
+  min-height: 100%;
+  padding: 1.65rem;
+}
+
+.audience-section {
+  background: var(--oikos-green);
+  border-radius: 8px;
+  color: rgba(255, 250, 241, 0.82);
+  margin: 0;
+  padding: 3rem;
+}
+
+.audience-section header.major > :last-child,
+.audience-section h3 {
+  color: var(--oikos-paper);
+}
+
+.audience-section header.major > :last-child:after {
+  background-color: var(--oikos-gold);
+}
+
+.audience-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.audience-grid article {
+  background: rgba(255, 250, 241, 0.06);
+  border: 1px solid rgba(255, 250, 241, 0.12);
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.audience-grid .icon {
+  align-items: center;
+  border: 1px solid rgba(201, 168, 76, 0.42);
+  border-radius: 999px;
+  display: inline-flex;
+  height: 3rem;
+  justify-content: center;
+  margin-bottom: 1rem;
+  width: 3rem;
+}
+
+.audience-grid .icon:before {
+  color: var(--oikos-gold);
+  font-size: 1.25rem;
 }
 
 .image-panel {
@@ -118,6 +199,64 @@ button.primary,
   letter-spacing: 0.22em;
   min-height: 11rem;
   text-transform: uppercase;
+}
+
+.section-intro {
+  max-width: 46rem;
+}
+
+.insight-cards article {
+  background: #fff;
+  border: 1px solid rgba(26, 22, 18, 0.08);
+  border-radius: 8px;
+  box-shadow: 0 0.75rem 1.8rem rgba(26, 22, 18, 0.06);
+  padding: 0 0 1.4rem;
+}
+
+.insight-cards article .image {
+  display: block;
+  margin: 0 0 1.2rem;
+}
+
+.insight-cards article .image img {
+  aspect-ratio: 4 / 3;
+  border-radius: 8px 8px 0 0;
+  height: auto;
+  object-fit: cover;
+  width: 100%;
+}
+
+.insight-cards article h3,
+.insight-cards article p {
+  padding-left: 1.35rem;
+  padding-right: 1.35rem;
+}
+
+.insight-cards article .eyebrow {
+  margin-bottom: 0.55rem;
+}
+
+.cta-section {
+  align-items: center;
+  background:
+    linear-gradient(135deg, rgba(255, 250, 241, 0.94), rgba(247, 241, 230, 0.9)),
+    linear-gradient(90deg, rgba(201, 168, 76, 0.2), transparent);
+  border: 1px solid rgba(201, 168, 76, 0.3);
+  border-radius: 8px;
+  display: flex;
+  gap: 2rem;
+  justify-content: space-between;
+  padding: 2rem;
+}
+
+.cta-section h2 {
+  color: var(--oikos-green);
+  margin-bottom: 0.65rem;
+}
+
+.cta-section .actions {
+  flex-shrink: 0;
+  margin: 0;
 }
 
 .brand-card {
@@ -152,11 +291,40 @@ button.primary,
 }
 
 @media screen and (max-width: 736px) {
+  .brand-banner {
+    margin: 1.5rem 0 0;
+    padding: 2rem;
+  }
+
   .spotlight-grid {
     grid-template-columns: 1fr;
   }
 
-  .brand-mark {
+  .brand-mark,
+  .hero-visual {
     min-height: 14rem;
+  }
+
+  .audience-section {
+    padding: 2rem;
+  }
+
+  .audience-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cta-section {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .cta-section .actions {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 737px) and (max-width: 1280px) {
+  #main > .inner {
+    padding-left: 6.5em;
   }
 }
